@@ -13,87 +13,31 @@
         <button type="button" class="search_line__button btn btn-success">Хуяк</button>
     </div>
   <div class="main-content">
-      <div class="service_cards_container">
+      <div class="service_cards_container" v-for="service in services">
           <div class="service_card">
               <div class="service_card__profile">
                   <div class="profile__img_wrap">
-                      <img src="/img/avatars/avatar_1.jpeg" loading="lazy" class="profile__img" alt="ава">
+                      <img :src="service.avatar" loading="lazy" class="profile__img" alt="ава">
                   </div>
-                  <button class="btn btn-link profile__btn_review">1751 отзыв</button>
+                  <button class="btn btn-link profile__btn_review">{{service.reviewsCount}} отзыв</button>
               </div>
               <div class="service_card__content">
                   <div class="content__title fs-3">
-                      <a href="__todo" class="service_title">Сервис центр "Насломан"</a>
+                      <a href="__todo" class="service_title">{{service.name}}</a>
                   </div>
                   <div class="content_phone">
                       <i class="fa-xl fas fa-blender-phone content_phone__icon"></i>
-                      <span class="content_phone__numbers">+7 (911) 999-88-77</span>
+                      <span class="content_phone__numbers">{{service.phone}}</span>
                   </div>
                   <div class="content_address">
                       <i class="fa-xl fa-solid fa-location-dot content_phone__icon"></i>
-                      <span class="content_phone__numbers">наб. Реки Карповки, д. 20</span>
+                      <span class="content_phone__numbers">{{addressToString(service.address)}}</span>
                   </div>
                   <div class="content__description">
                       <blockquote>
-                          {{contentShorter('Чтобы ремонт сотовых, мобильных телефонов и смартфонов прошел действительно срочно и качественно, обращайтесь в наши сервисные центры «re-Center СПб». Диагностика всегда бесплатна, при любых условиях! Ремонтируем телефоны любых марок по низким ценам в Санкт-Петербурге. Длительная гарантия до 1 года, мастера с опытом более 8 лет с профессиональным оборудованием. Устанавливаем оригинальные запчасти, так же их качественные аналоги.')}}
+                          {{contentShorter(service.description)}}
                      </blockquote>
                 </div>
-              </div>
-          </div>
-      </div>
-      <div class="service_cards_container">
-          <div class="service_card">
-              <div class="service_card__profile">
-                  <div class="profile__img_wrap">
-                      <img src="/img/avatars/avatar_1.jpeg" loading="lazy" class="profile__img" alt="ава">
-                  </div>
-                  <button class="btn btn-link profile__btn_review">1751 отзыв</button>
-              </div>
-              <div class="service_card__content">
-                  <div class="content__title fs-3">
-                      <a href="__todo" class="service_title">Сервис центр "Насломан"</a>
-                  </div>
-                  <div class="content_phone">
-                      <i class="fa-xl fas fa-blender-phone content_phone__icon"></i>
-                      <span class="content_phone__numbers">+7 (911) 999-88-77</span>
-                  </div>
-                  <div class="content_address">
-                      <i class="fa-xl fa-solid fa-location-dot content_phone__icon"></i>
-                      <span class="content_phone__numbers">наб. Реки Карповки, д. 20</span>
-                  </div>
-                  <div class="content__description">
-                      <blockquote>
-                          {{contentShorter('Чтобы ремонт сотовых, мобильных телефонов и смартфонов прошел действительно срочно и качественно, обращайтесь в наши сервисные центры «re-Center СПб». Диагностика всегда бесплатна, при любых условиях! Ремонтируем телефоны любых марок по низким ценам в Санкт-Петербурге. Длительная гарантия до 1 года, мастера с опытом более 8 лет с профессиональным оборудованием. Устанавливаем оригинальные запчасти, так же их качественные аналоги.')}}
-                      </blockquote>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="service_cards_container">
-          <div class="service_card">
-              <div class="service_card__profile">
-                  <div class="profile__img_wrap">
-                      <img src="/img/avatars/avatar_1.jpeg" loading="lazy" class="profile__img" alt="ава">
-                  </div>
-                  <button class="btn btn-link profile__btn_review">1751 отзыв</button>
-              </div>
-              <div class="service_card__content">
-                  <div class="content__title fs-3">
-                      <a href="__todo" class="service_title">Сервис центр "Насломан"</a>
-                  </div>
-                  <div class="content_phone">
-                      <i class="fa-xl fas fa-blender-phone content_phone__icon"></i>
-                      <span class="content_phone__numbers">+7 (911) 999-88-77</span>
-                  </div>
-                  <div class="content_address">
-                      <i class="fa-xl fa-solid fa-location-dot content_phone__icon"></i>
-                      <span class="content_phone__numbers">наб. Реки Карповки, д. 20</span>
-                  </div>
-                  <div class="content__description">
-                      <blockquote>
-                          {{contentShorter('Чтобы ремонт сотовых, мобильных телефонов и смартфонов прошел действительно срочно и качественно, обращайтесь в наши сервисные центры «re-Center СПб». Диагностика всегда бесплатна, при любых условиях! Ремонтируем телефоны любых марок по низким ценам в Санкт-Петербурге. Длительная гарантия до 1 года, мастера с опытом более 8 лет с профессиональным оборудованием. Устанавливаем оригинальные запчасти, так же их качественные аналоги.')}}
-                      </blockquote>
-                  </div>
               </div>
           </div>
       </div>
@@ -102,9 +46,31 @@
 <script>
 export default {
     data: function () {
-        return {};
+        return {
+            services: [
+                {
+                    name: 'Сервис центр "Насломан"',
+                    avatar: "/img/avatars/avatar_1.jpeg",
+                    phone: '79119122212',
+                    reviewsCount: 102,
+                    description: 'Чтобы ремонт сотовых, мобильных телефонов и смартфонов прошел действительно срочно и качественно, обращайтесь в наши сервисные центры «re-Center СПб». Диагностика всегда бесплатна, при любых условиях! Ремонтируем телефоны любых марок по низким ценам в Санкт-Петербурге. Длительная гарантия до 1 года, мастера с опытом более 8 лет с профессиональным оборудованием. Устанавливаем оригинальные запчасти, так же их качественные аналоги.',
+                    address: {
+                        street: 'наб. Реки Карповки',
+                        building: 'д. 20',
+                        flat: null
+                    }
+                }
+            ]
+        };
     },
     methods: {
+        addressToString(address){
+          let res =  address.street+' '+address.building;
+          if (address.flat !== null && address.flat !== ''){
+              res += ', '+address.flat;
+          }
+            return res;
+        },
         contentShorter(text) {
             let res = ''
             text.split(' ').forEach((word)=> {
