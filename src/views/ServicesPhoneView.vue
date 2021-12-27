@@ -1,4 +1,5 @@
 <template>
+    <div class="header">
     <div class="search_line">
         <div class="search-field__input-wrapper">
             <div class="text-field">
@@ -10,7 +11,8 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="search_line__button btn btn-success">Хуяк</button>
+        <button type="button" class="search_line__button btn btn-success"><i class="fa-xl fas fa-telescope"></i></button>
+    </div>
     </div>
   <div class="main-content">
       <div class="service_cards_container" v-for="service in services">
@@ -81,20 +83,16 @@ export default {
 .content_phone__icon{
     color: dodgerblue;
 }
-.service_cards_container, .search_line {
-    width: 960px;
-    margin: 0 auto;
+.service_cards_container {
+    padding: 0 12px;
 }
-@media (min-width: 1200px) {
-    .service_cards_container, .search_line {
-        width:1120px;
-    }
-}
+
 .search_line {
+    padding: 0 16px;
     transform: translateY(50%);
     margin-top: -32px;
     margin-bottom: 44px;
-    z-index: 100;
+    z-index: 3;
     display: flex;
     position: relative;
 }
@@ -120,7 +118,7 @@ export default {
     justify-content: center;
     width: 150px;
     height: 150px;
-    border-radius: 4px;
+    border-radiusborder-radius: 4px;
     border: 1px solid #e8ebf1;
     line-height: 0;
     cursor: pointer;
@@ -220,7 +218,7 @@ blockquote:before {
      left: 0;
      right: 0;
      bottom: 0;
-     border-radius: 4px;
+     border-radius: 4px 0 0 4px;
      border: 1px solid #757575;
      pointer-events: none;
  }
@@ -243,12 +241,14 @@ blockquote:before {
      flex: 1 1 auto;
  }
  .search_line__button{
-     flex: 0 0 130px;
-     margin: 0 0 0 16px;
+     flex: 0 0 45px;
+     margin: 0 0 0 0px;
      font-weight: 500;
      font-size: 14px;
      line-height: 16px;
      letter-spacing: 1.25px;
      text-transform: uppercase;
+     border-top-left-radius: 0;
+     border-bottom-left-radius: 0;
  }
 </style>
