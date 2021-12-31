@@ -17,30 +17,30 @@
   <div class="main-content">
       <div class="service_cards_container" v-for="service in services">
           <div class="service_card">
-              <div class="service_card__profile">
+              <div class="service_card__top">
                   <div class="profile__img_wrap">
                       <img :src="service.avatar" loading="lazy" class="profile__img" alt="ава">
                   </div>
-                  <button class="btn btn-link profile__btn_review">{{service.reviewsCount}} отзыв</button>
-              </div>
-              <div class="service_card__content">
                   <div class="content__title fs-3">
-                      <a href="__todo" class="service_title">{{service.name}}</a>
+                    <a href="__todo" class="service_title">{{service.name}}</a><br/>
+                    <button class="btn btn-link profile__btn_review">Отзывов: {{service.reviewsCount}}</button>
                   </div>
-                  <div class="content_phone">
-                      <i class="fa-xl fas fa-blender-phone content_phone__icon"></i>
-                      <span class="content_phone__numbers">{{service.phone}}</span>
-                  </div>
-                  <div class="content_address">
-                      <i class="fa-xl fa-solid fa-location-dot content_phone__icon"></i>
-                      <span class="content_phone__numbers">{{service.address}}</span>
-                  </div>
-                  <div class="content__description">
-                      <blockquote>
-                          {{contentShorter(service.description)}}
-                     </blockquote>
-                </div>
               </div>
+            <div class="service_card__content">
+              <div class="content_phone">
+                <i class="fa-xl fas fa-blender-phone content_phone__icon"></i>
+                <span class="content_phone__numbers">{{service.phone}}</span>
+              </div>
+              <div class="content_address">
+                <i class="fa-xl fa-solid fa-location-dot content_address__icon"></i>
+                <span class="content_phone__numbers">{{service.address}}</span>
+              </div>
+              <div class="content__description">
+                <blockquote>
+                  {{contentShorter(service.description)}}
+                </blockquote>
+              </div>
+            </div>
           </div>
       </div>
   </div>
@@ -69,7 +69,7 @@ export default {
         contentShorter(text) {
             let res = ''
             text.split(' ').forEach((word)=> {
-                if (res.length< 250){
+                if (res.length< 150){
                     res += ' ' + word
                 }
             })
@@ -83,8 +83,12 @@ export default {
 .content_phone__icon{
     color: dodgerblue;
 }
+.content_address__icon{
+    padding-left: 6px;
+    color: dodgerblue;
+}
 .service_cards_container {
-    padding: 0 12px;
+    padding: 0 8px;
 }
 
 .search_line {
@@ -97,8 +101,7 @@ export default {
     position: relative;
 }
 .service_card{
-    display: flex;
-    padding: 24px;
+    padding: 12px 12px 0 12px;
     margin: 16px 0;
     border-radius: 5px;
     background: #fff;
@@ -116,8 +119,8 @@ export default {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     border-radiusborder-radius: 4px;
     border: 1px solid #e8ebf1;
     line-height: 0;
@@ -126,42 +129,47 @@ export default {
 }
 .profile__btn_review
 {
+    padding: 0 !important;
     color: #4e4e4e!important;
 }
 .profile__btn_review:hover
 {
    text-decoration: none;
 }
-.service_card__profile{
-    width: 150px;
-    text-align: center;
+.service_card__top{
+  width: 100%;
+  height: 125px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  padding: 16px 16px 0;
 }
 .service_card__content{
-    padding: 0 24px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: inline-block;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
+  width: 100%;
 }
 .service_title{
     display: inline-block;
     text-decoration: none;
     color: dodgerblue;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 135%;
+    letter-spacing: 0;
+}
+.content__title {
+  width: calc(100% - 100px);
+  padding-left: 16px;
 }
 .content_phone{
-    margin: 10px 0;
+  margin: 20px 0;
+  padding: 0 16px;
 }
 .content_address{
-    margin: 10px 0;
+  margin: 20px 0;
+  padding: 0 16px;
 }
 .content_phone__numbers {
     padding-left: 10px;
@@ -171,9 +179,9 @@ export default {
 }
 .content__description {
     line-height: 140%;
-    font-size: 14px;
+    font-size: 16px;
     color: #0c0a0a;
-    margin-bottom: 24px;
+    margin-bottom: 15px;
 }
 blockquote:before {
     content: "\AB ";

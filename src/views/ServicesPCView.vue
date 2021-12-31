@@ -44,7 +44,38 @@
   </div>
 </template>
 <script>
+export default {
+  data: function () {
+    return {
+      services: [
+        {
+          name: 'Сервис центр "Насломан"',
+          avatar: "/img/avatars/avatar_1.jpeg",
+          phone: '79119122212',
+          reviewsCount: 102,
+          description: 'Чтобы ремонт сотовых, мобильных телефонов и смартфонов прошел действительно срочно и качественно, обращайтесь в наши сервисные центры «re-Center СПб». Диагностика всегда бесплатна, при любых условиях! Ремонтируем телефоны любых марок по низким ценам в Санкт-Петербурге. Длительная гарантия до 1 года, мастера с опытом более 8 лет с профессиональным оборудованием. Устанавливаем оригинальные запчасти, так же их качественные аналоги.',
+          address: 'наб. Реки Карповки, д. 20',
+          map: {
+            latitude: 60.012345,
+            longitude: 60.012345,
+          }
+        }
+      ]
+    };
+  },
+  methods: {
+    contentShorter(text) {
+      let res = ''
+      text.split(' ').forEach((word)=> {
+        if (res.length< 250){
+          res += ' ' + word
+        }
+      })
 
+      return res+'...'
+    },
+  },
+}
 </script>
 <style scoped>
 .content_phone__icon{
